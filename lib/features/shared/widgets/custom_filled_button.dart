@@ -26,9 +26,14 @@ class CustomFilledButton extends StatelessWidget {
           bottomLeft: radius,
           bottomRight: radius,
           topLeft: radius,
-        )
-      )),
+          topRight: radius
+        ),
         
+      ),
+      // foregroundColor: scaffoldBackgroundColor
+      // padding: EdgeInsets.all(10)
+      ),
+      
   
       onPressed: onPressed, 
       child: Text(text)

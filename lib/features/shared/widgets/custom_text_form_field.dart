@@ -38,7 +38,7 @@ class CustomTextFormField extends StatelessWidget {
       // padding: const EdgeInsets.only(bottom: 0, top: 15),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(topLeft: borderRadius, bottomLeft: borderRadius, bottomRight: borderRadius ),
+        borderRadius: const BorderRadius.only(topLeft: borderRadius, topRight: borderRadius, bottomLeft: borderRadius, bottomRight: borderRadius ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.06),

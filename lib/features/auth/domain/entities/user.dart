@@ -5,7 +5,8 @@ class UserTCA {
   final String expiracion;
   final String nombreLargo;
   final String fecha;
-  final List<dynamic> usuario;
+  final List<dynamic> permisos;
+  final List<dynamic> perfiles;
   final String aplicacionLogin;
   final String agente;
 
@@ -14,7 +15,8 @@ class UserTCA {
     required this.expiracion, 
     required this.nombreLargo, 
     required this.fecha, 
-    required this.usuario, 
+    required this.permisos, 
+    required this.perfiles, 
     required this.aplicacionLogin, 
     required this.agente
   });

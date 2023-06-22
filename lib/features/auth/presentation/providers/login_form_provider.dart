@@ -1,9 +1,9 @@
 //* estado del provider
 import 'package:teslo_shop/features/auth/presentation/providers/auth_provider.dart';
-import 'package:teslo_shop/features/shared/shared.dart';
+// import 'package:teslo_shop/features/shared/shared.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:formz/formz.dart';
+// import 'package:formz/formz.dart';
 
 //* statenotifierProvider
 // * se coloca autodispose, para limitar el tiempo de vida de los datos del login
@@ -17,28 +17,29 @@ class LoginFormState {
   final bool isPosting;
   final bool isFormPosted;
   final bool isValid;
-  final Email email;
-  final Password password;
+  final String user;
+  final String password;
 
   LoginFormState(
       {this.isPosting = false,
       this.isFormPosted = false,
       this.isValid = false,
-      this.email = const Email.pure(),
-      this.password = const Password.pure()});
+      this.user = '',
+      this.password = '',
+      });
 
   LoginFormState copyWith({
     bool? isPosting,
     bool? isFormPosted,
     bool? isValid,
-    Email? email,
-    Password? password,
+    String? user,
+    String? password,
   }) =>
       LoginFormState(
         isPosting: isPosting ?? this.isPosting,
         isFormPosted: isFormPosted ?? this.isFormPosted,
         isValid: isValid ?? this.isValid,
-        email: email ?? this.email,
+        user: user ?? this.user,
         password: password ?? this.password,
       );
 
@@ -49,7 +50,7 @@ class LoginFormState {
     isPosting: $isPosting
     isFormPosted: $isFormPosted
     isValid: $isValid
-    email: $email
+    user: $user
     password: $password
 
 ''';
@@ -62,37 +63,39 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
   LoginFormNotifier({required this.loginUserCallback})
       : super(LoginFormState());
 
-  onEmailChange(String value) {
-    final newEmail = Email.dirty(value);
+//se valida un maximo de 3 caracteres
+  onUserChange(String value) {
+    final newUser = value;
     state = state.copyWith(
-        email: newEmail, isValid: Formz.validate([newEmail, state.password]));
+        user: newUser, isValid: newUser.length > 3 ? true : false);
   }
 
+//se valida un maximo de 3 caracteres
   onPasswordChange(String value) {
-    final newPassword = Password.dirty(value);
+    final newPassword = value;
     state = state.copyWith(
-        password: newPassword,
-        isValid: Formz.validate([newPassword, state.email]));
+        password: newPassword, isValid: newPassword.length > 3 ? true : false);
   }
 
-  onFormSubmit() async{
+  onFormSubmit() async {
     _touchEveryField();
 
     if (!state.isValid) return;
 
     // print(state);
-    await loginUserCallback(state.email.value,state.password.value);
+    await loginUserCallback(state.user, state.password);
   }
 
+//valida si se tocaron los campos
   _touchEveryField() {
-    final email = Email.dirty(state.email.value);
-    final password = Password.dirty(state.password.value);
+    final userTCA = state.user;
+    final password = state.password;
 
     state = state.copyWith(
       isFormPosted: true,
-      email: email,
+      user: userTCA,
       password: password,
-      isValid: Formz.validate([email, password]),
+      isValid: (userTCA.length > 3 && password.length > 3) ? true : false,
     );
   }
 }

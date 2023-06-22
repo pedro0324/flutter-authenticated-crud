@@ -9,42 +9,43 @@ class GeometricalBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final backgroundColor = Theme.of(context).scaffoldBackgroundColor;
-    final borderSize = size.width / 7; // Este es el tamaño para colocar 7 elementos
+    // final backgroundColor = Theme.of(context).scaffoldBackgroundColor;
+    // final borderSize = size.width / 7; // Este es el tamaño para colocar 7 elementos
 
 
-    final shapeWidgets = [
-      _Circle(borderSize),
-      _Square(borderSize),
-      _RightTriangle(borderSize),
-      _LeftTriangle(borderSize),
-      _Diamond(borderSize),
-      _SemiCircle(borderSize),
-      _SemiCircleInverted(borderSize),
-    ];
+    // final shapeWidgets = [
+    //   _Circle(borderSize),
+    //   _Square(borderSize),
+    //   _RightTriangle(borderSize),
+    //   _LeftTriangle(borderSize),
+    //   _Diamond(borderSize),
+    //   _SemiCircle(borderSize),
+    //   _SemiCircleInverted(borderSize),
+    // ];
 
 
     return SizedBox.expand(
       child: Stack(
         children: [
 
-          Positioned(child: Container(color: backgroundColor)),
+          // Positioned(child: Container(color: backgroundColor)),
 
           // Background with shapes
           Container(
             height: size.height * 0.7,
-            decoration: const BoxDecoration(
-              color: Colors.black,
+            decoration: BoxDecoration(
+              color: Colors.blue.shade100,
             ),
             child: Column(
               children: [
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
+                Container(color: Colors.blue.shade100,)
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
               ],
             )
           ),

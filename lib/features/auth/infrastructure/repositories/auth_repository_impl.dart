@@ -16,7 +16,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<UserTCA> login(String email, String password) {
-    return dataSource.login(email, password);
+  Future<UserTCA> login(String user, String password) {
+    return dataSource.login(user, password);
   }
 }

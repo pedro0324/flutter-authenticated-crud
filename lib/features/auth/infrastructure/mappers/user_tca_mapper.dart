@@ -6,7 +6,8 @@ class UserTCAMapper {
       expiracion: json['expiracion'],
       nombreLargo: json['nombreLargo'],
       fecha: json['fecha'],
-      usuario: List<dynamic>.from(json['usuario'].map((u)=>u['permisos'])),
+      perfiles: List<dynamic>.from(json['usuario']['perfiles']),
+      permisos: List<dynamic>.from(json['usuario']['permisos']),
       aplicacionLogin: json['aplicacionLogin'],
       agente: json['agente']
       );
