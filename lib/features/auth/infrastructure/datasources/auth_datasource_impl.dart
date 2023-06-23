@@ -12,9 +12,28 @@ class AuthDataSourceImpl extends AuthDataSource {
   ));
 
   @override
-  Future<UserTCA> checkingAuthStatus(String token) {
-    // TODO: implement checkingAuthStatus
-    throw UnimplementedError();
+  Future<UserTCA> checkingAuthStatus(String token) async {
+    try {
+      final response = await dio.get('/Cuentas/V1/ValidaToken?token=$token',
+          // options: Options(headers: {
+          //   'Authorization': 'Bearer $token',
+          // })
+          );
+
+      final user = UserTCAMapper.userJsonToEntity(response.data);
+
+      return user;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) throw CustomError(e.response?.data);
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw CustomError('Connection Timeout');
+      }
+
+      // error personalizado
+      throw Exception();
+    } catch (e) {
+      throw Exception();
+    }
   }
 
   @override
@@ -39,7 +58,9 @@ class AuthDataSourceImpl extends AuthDataSource {
       // print(response);
     } on DioException catch (e) {
       if (e.response?.statusCode == 400) throw CustomError(e.response?.data);
-      if (e.type == DioExceptionType.connectionTimeout) throw CustomError('Connection Timeout');
+      if (e.type == DioExceptionType.connectionTimeout) {
+        throw CustomError('Connection Timeout');
+      }
 
       // error personalizado
       throw Exception();

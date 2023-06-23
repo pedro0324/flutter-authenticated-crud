@@ -20,13 +20,13 @@ class LoginFormState {
   final String user;
   final String password;
 
-  LoginFormState(
-      {this.isPosting = false,
-      this.isFormPosted = false,
-      this.isValid = false,
-      this.user = '',
-      this.password = '',
-      });
+  LoginFormState({
+    this.isPosting = false,
+    this.isFormPosted = false,
+    this.isValid = false,
+    this.user = '',
+    this.password = '',
+  });
 
   LoginFormState copyWith({
     bool? isPosting,
@@ -82,8 +82,12 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
     if (!state.isValid) return;
 
+    state = state.copyWith(isPosting: true);
     // print(state);
     await loginUserCallback(state.user, state.password);
+
+    state = state.copyWith(isPosting: false);
+
   }
 
 //valida si se tocaron los campos

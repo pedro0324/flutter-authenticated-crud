@@ -12,7 +12,7 @@ class ProductsScreen extends StatelessWidget {
     return Scaffold(
       drawer: SideMenu( scaffoldKey: scaffoldKey ),
       appBar: AppBar(
-        title: const Text('Products'),
+        title: const Text('Codigo Alert'),
         actions: [
           IconButton(
             onPressed: (){}, 
@@ -22,7 +22,7 @@ class ProductsScreen extends StatelessWidget {
       ),
       body: const _ProductsView(),
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Nuevo producto'),
+        label: const Text('Crear codigo'),
         icon: const Icon( Icons.add ),
         onPressed: () {},
       ),
@@ -36,6 +36,6 @@ class _ProductsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Eres genial!'));
+    return const Center(child: Text('No hay codigos activos'));
   }
 }

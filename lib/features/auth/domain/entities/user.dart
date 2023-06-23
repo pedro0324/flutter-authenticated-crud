@@ -8,7 +8,7 @@ class UserTCA {
   final List<dynamic> permisos;
   final List<dynamic> perfiles;
   final String aplicacionLogin;
-  final String agente;
+  final String? agente;
 
   UserTCA({
     required this.token, 
@@ -18,6 +18,6 @@ class UserTCA {
     required this.permisos, 
     required this.perfiles, 
     required this.aplicacionLogin, 
-    required this.agente
+    this.agente=''
   });
 }
